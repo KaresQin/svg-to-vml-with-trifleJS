@@ -52,7 +52,7 @@ function main() {
 						.replace(/<\?xml[^>]*>/g, "")
 						.replace(/<!--[^>]*-->/g, "")
 						.replace(/<!DOCTYPE[^>]*>/g, "")
-						.replace(/id=\S*/g, "")
+						.replace(/id=[^>|\s]*/g, "")
 				);
 				break;
 			case "vml":
