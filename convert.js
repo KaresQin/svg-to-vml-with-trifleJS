@@ -82,7 +82,13 @@ function parseSvg(fileNameAndPath) {
 		svgPage.includeJs('http://localhost:9527/jquery', function () {
 			svgContent = svgPage.evaluate(function () {
 				var $ = window.$;
-				return $('svg').wrap('<div></div>').parent().html();
+				var $svg = $('svg');
+				var viewbox = $svg.attr("viewBox");
+				if(!$svg.attr("width") || !$svg.attr("height")){
+					$svg.attr("width", viewbox.split(" ")[2]);
+					$svg.attr("height", viewbox.split(" ")[3]);
+				}
+				return $svg.wrap('<div></div>').parent().html();
 			});
 
 			svgPage.close();
